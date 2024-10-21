@@ -9,11 +9,19 @@ function displayMockWeather(city) {
     const mockData = {
         name: city,
         main: {
+<<<<<<< HEAD
             temp: Math.floor(Math.random() * 30) + 10,
             humidity: Math.floor(Math.random() * 100)
         },
         weather: [
             { description: 'Clear sky' }
+=======
+            temp: Math.floor(Math.random() * 30) + 10, // Random temp between 10 and 40
+            humidity: Math.floor(Math.random() * 100) // Random humidity
+        },
+        weather: [
+            { description: 'Clear sky' } // Static description for testing
+>>>>>>> acf044a601f02449a3817033fbfefcb63a7695bf
         ]
     };
 
