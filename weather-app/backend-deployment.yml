@@ -7,15 +7,15 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: weather-backend
+      app: weather-be
   template:
     metadata:
       labels:
-        app: weather-backend
+        app: weather-be
     spec:
       containers:
-        - name: weather-backend
-          image: sekharatulsingh2016/weather-backend
+        - name: weather-be
+          image: sekharatulsingh2016/weather-be
           ports:
             - containerPort: 3001
 ---
@@ -26,7 +26,7 @@ metadata:
   namespace: weather-app
 spec:
   selector:
-    app: weather-backend
+    app: weather-be
   ports:
     - protocol: TCP
       port: 80
