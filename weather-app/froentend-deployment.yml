@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: weather-frontend
-          image: your-docker-username/weather-frontend
+          image: sekharatulsingh2016/weather-frontend
           ports:
             - containerPort: 3000
 ---
