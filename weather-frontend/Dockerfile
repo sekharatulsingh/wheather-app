@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm cache clean --force
 RUN npm config set registry https://registry.npmjs.org/
 # RUN npm ci
-RUN npm -g yarn
+RUN npm install -g yarn
 RUN npm install
 # RUN node -v && npm -v && ls -la
 
