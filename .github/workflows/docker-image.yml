@@ -1,10 +1,9 @@
-name: Docker Image CI
+name: Build and Run Docker Container
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,10 +11,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Build the Docker image for backend
-        run: docker build . --file ../../weather-be/Dockerfile --tag weather-backend:$(date +%s)
+      - name: Build Docker image
+        run: |
+          docker build -t weather-froentend .
+          
+      - name: Run Docker container
+        run: |
+          docker run -p 3001:3001 weather-frontend
 
-      - name: Build the Docker image for frontend
-        run: docker build . --file ../../weather-fe/Dockerfile --tag weather-frontend:$(date +%s)
+      - name: Build Docker image
+        run: |
+          docker build -t weather-backend .
+          
+      - name: Run Docker container
+        run: |
+          docker run -p 3000:3000 weather-backend
