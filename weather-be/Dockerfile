@@ -1,15 +1,15 @@
 FROM node:16-alpine
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if it exists)
-COPY package.json ./
-# Uncomment the next line if you have a package-lock.json
-# COPY package-lock.json ./
+# Adjust the path based on where package.json is located
+COPY weather-fe/package.json ./
+# Uncomment if you have a package-lock.json
+# COPY weather-fe/package-lock.json ./
 
 RUN npm install
 
 # Copy the rest of your application code
-COPY . .
+COPY weather-fe .  # Adjust this line based on your structure
 
 EXPOSE 3001
-CMD ["node", "../../weather.js"]
+CMD ["node", "weather.js"]
