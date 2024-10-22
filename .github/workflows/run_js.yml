@@ -3,9 +3,8 @@ name: Run JavaScript File
 on:
   push:
     branches:
-      - main  # Trigger on pushes to the main branch
-    
-  workflow_dispatch:  # Enable manual trigger
+      - main
+  workflow_dispatch:
 
 jobs:
   run_js:
@@ -15,13 +14,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Run JavaScript File in Docker
+        uses: docker://node:16-alpine
         with:
-          node-version: '18.x'  # Specify Node.js version
-
-      - name: Install dependencies (if any)
-        run: npm install
-
-      - name: Run JavaScript File
-        run: node ../../weather.js
+          args: |
+            sh -c "npm install && node ../../weather.js"
