@@ -8,7 +8,9 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm config set registry https://registry.npmjs.org/
+RUN npm install --verbose
+
 
 # Copy the rest of the application code
 COPY . .
