@@ -7,21 +7,15 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file ../../weather-be/Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file ../../weather-fe/Dockerfile --tag my-image-name:$(date +%s)
+      - name: Build the Docker image for backend
+        run: docker build . --file ../../weather-be/Dockerfile --tag weather-backend:$(date +%s)
+
+      - name: Build the Docker image for frontend
+        run: docker build . --file ../../weather-fe/Dockerfile --tag weather-frontend:$(date +%s)
