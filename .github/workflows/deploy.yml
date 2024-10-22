@@ -1,1 +1,40 @@
+name: Deploy to kubernetes
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+  runs-on: ubantu- latest
+
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v2
+
+  - name: Set up kubectl
+    uses: azure/setup-kubectl@v1
+    with:
+      version: 'latest'
+
+  - name: Configure kubernetes context
+    runs: |
+      echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+      Chloe 600 $HOME/.kube/config
+
+  - name: Apply kubernetes manifests
+    run: kubectl apply -f ../../weather-app/namespace.yml
+
+
+  - name: Apply kubernetes manifests
+    run: kubectl apply -f ../../weather-app/backend-deployment.yml
+    
+  
+  - name: Apply kubernetes manifests
+    run: kubectl apply -f ../../weather-app/frontend-deployment.yml
+
+
+  - name: Apply kubernetes manifests
+    run: kubectl apply -f ../../weather-app/mongo-deployment.yml
+    
