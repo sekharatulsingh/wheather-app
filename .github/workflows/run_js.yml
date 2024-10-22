@@ -1,0 +1,27 @@
+name: Run JavaScript File
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+    
+  workflow_dispatch:  # Enable manual trigger
+
+jobs:
+  run_js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'  # Specify Node.js version
+
+      - name: Install dependencies (if any)
+        run: npm install
+
+      - name: Run JavaScript File
+        run: node ../../weather.js
