@@ -10,7 +10,7 @@ COPY package*.json ./
 # Install dependencies
 RUN npm cache clean --force
 RUN npm config set registry https://registry.npmjs.org/
-RUN npm install --max-old-space-size=4096 --verbose
+RUN npm install
 RUN node -v && npm -v && ls -la
 
 # Copy the rest of the application code
