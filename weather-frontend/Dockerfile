@@ -10,8 +10,8 @@ COPY package*.json ./
 # Install dependencies
 RUN npm cache clean --force
 RUN npm config set registry https://registry.npmjs.org/
-RUN npm install
-RUN node -v && npm -v && ls -la
+RUN npm ci
+# RUN node -v && npm -v && ls -la
 
 # Copy the rest of the application code
 COPY . .
