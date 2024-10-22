@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: ./weather-frontend
+    ports:
+      - "8080:80"
+    
+  backend:
+    build:
+      context: ./weather-backend
+    ports:
+      - "3000:3000"
+    
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: weatherdb
+      MYSQL_ROOT_PASSWORD: rootpassword

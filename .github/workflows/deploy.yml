@@ -1,40 +1,28 @@
-name: Deploy to kubernetes
+name: Deploy to Kubernetes
 
 on:
   push:
     branches:
-      - main
+      - main  # Change this to your default branch if needed
 
 jobs:
   deploy:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-  - name: Checkout code
-    uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  - name: Set up kubectl
-    uses: azure/setup-kubectl@v1
-    with:
-      version: 'latest'
+      - name: Set up Kubernetes
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
 
-  - name: Configure kubernetes context
-    runs: |
-      echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
-      chmod 600 $HOME/.kube/config
+      - name: Configure kubectl
+        run: |
+          echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig.yaml
+          export KUBECONFIG=./kubeconfig.yaml
 
-  - name: Apply kubernetes manifests
-    run: kubectl apply -f ../../weather-app/namespace.yml
-
-
-  - name: Apply kubernetes manifests
-    run: kubectl apply -f ../../weather-app/backend-deployment.yml
-    
-  
-  - name: Apply kubernetes manifests
-    run: kubectl apply -f ../../weather-app/frontend-deployment.yml
-
-
-  - name: Apply kubernetes manifests
-    run: kubectl apply -f ../../weather-app/mongo-deployment.yml
-    
+      - name: Apply Kubernetes Manifests
+        run: |
+          kubectl apply -f weather-app/

@@ -1,33 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
-  namespace: weather-app
+  name: backend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: weather-be
+      app: weather-backend
   template:
     metadata:
       labels:
-        app: weather-be
+        app: weather-backend
     spec:
       containers:
-        - name: weather-be
-          image: sekharatulsingh2016/weather-be
-          ports:
-            - containerPort: 3001
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend-service
-  namespace: weather-app
-spec:
-  selector:
-    app: weather-be
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3001
+      - name: weather-backend
+        image: sekharatulsingh2016/backend
+        ports:
+        - containerPort: 3000

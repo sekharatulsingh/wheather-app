@@ -1,34 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deployment
-  namespace: weather-app
+  name: weather-frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: weather-fe
+      app: weather-frontend
   template:
     metadata:
       labels:
-        app: weather-fe
+        app: weather-frontend
     spec:
       containers:
-        - name: weather-fe
-          image: sekharatulsingh2016/weather-fe
-          ports:
-            - containerPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-service
-  namespace: weather-app
-spec:
-  selector:
-    app: weather-fe
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3000
-  type: LoadBalancer
+      - name: frontend
+        image: sekharatulsingh2016/weather-frontend
+        ports:
+        - containerPort: 80
