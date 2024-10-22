@@ -3,12 +3,12 @@ name: Run Python Script
 on:
   push:
     branches:
-      - main  # Trigger when changes are pushed to main branch
-  workflow_dispatch:  # Allow manual trigger
+      - main  # Trigger when changes are pushed to the main branch
+  workflow_dispatch:
 
 jobs:
   run_python:
-    runs-on: ubuntu-latest  # Run on Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -17,11 +17,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'  # Specify the Python version
+          python-version: '3.9'
 
       - name: Install dependencies (if needed)
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
 
       - name: Run Python Script
         run: python ../../weather.py
