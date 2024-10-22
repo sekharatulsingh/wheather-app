@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 80
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["npm", "./app.js"]
