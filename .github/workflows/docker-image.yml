@@ -15,16 +15,16 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t weather-froentend .
+          docker build -t weather-fe .
           
       - name: Run Docker container
         run: |
-          docker run -p 3001:3001 weather-frontend
+          docker run -p 3001:3001 weather-fe
 
       - name: Build Docker image
         run: |
-          docker build -t weather-backend .
+          docker build -t weather-be .
           
       - name: Run Docker container
         run: |
-          docker run -p 3000:3000 weather-backend
+          docker run -p 3000:3000 weather-be
