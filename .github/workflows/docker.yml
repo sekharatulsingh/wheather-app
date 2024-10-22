@@ -21,11 +21,11 @@ jobs:
 
       - name: Build Frontend Image
         run: |
-          docker build -t sekharatulsingh2016/weather-frontend ./weather-frontend
+          docker build --no-cache -t sekharatulsingh2016/weather-frontend ./weather-frontend
 
       - name: Build Backend Image
         run: |
-          docker build -t sekharatulsingh2016/weather-backend ./weather-backend
+          docker build --no-cache -t sekharatulsingh2016/weather-backend ./weather-backend
 
       - name: Push Frontend Image
         run: |
