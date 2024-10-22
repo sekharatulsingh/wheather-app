@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-  runs-on: ubantu-latest
+  runs-on: ubuntu-latest
 
   steps:
   - name: Checkout code
@@ -21,7 +21,7 @@ jobs:
   - name: Configure kubernetes context
     runs: |
       echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
-      Chmod 600 $HOME/.kube/config
+      chmod 600 $HOME/.kube/config
 
   - name: Apply kubernetes manifests
     run: kubectl apply -f ../../weather-app/namespace.yml
